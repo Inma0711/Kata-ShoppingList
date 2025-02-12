@@ -14,10 +14,8 @@ class Shopping_List extends Model
     protected $table = 'shopping_list';
 
     protected $fillable = [
-        'id_article'
+      'article',
+      'price'
     ];
 
-    public function type(): BelongsTo {
-        return $this->belongsTo(Article::class, 'id_article');
-    }
 }

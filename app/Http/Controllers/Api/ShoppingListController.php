@@ -15,51 +15,38 @@ class ShoppingListController extends Controller
         return response()->json($shoppinglist, 200);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $shoppinglist = Shopping_List::create([
+            'article' => $request->article,
+            'price' => $request->price,
+        ]);
+        $shoppinglist->save();
+        return response()->json($shoppinglist, 200);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, string $id)
     {
-        //
+        $shoppinglist = Shopping_List::find($id);
+        $shoppinglist->update([
+            'article' => $request->article,
+            'price' => $request->price,
+        ]);
+
+        $shoppinglist->save();
+        return response()->json($shoppinglist, 200);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
     {
-        //
+        $shoppinglist = Shopping_List::find($id);
+        $shoppinglist->delete();
+
     }
+
+    public function destroyall(){
+        $shoppinglist = Shopping_List::all();
+        $shoppinglist->delete();
+    }
+
 }
