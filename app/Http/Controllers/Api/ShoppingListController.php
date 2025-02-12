@@ -3,16 +3,16 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Shopping_List;
 use Illuminate\Http\Request;
 
 class ShoppingListController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {
-        //
+        $shoppinglist = Shopping_List::all();
+        return response()->json($shoppinglist, 200);
     }
 
     /**
